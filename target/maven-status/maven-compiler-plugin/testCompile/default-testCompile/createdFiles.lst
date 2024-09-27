@@ -1,0 +1,9 @@
+ApiTest/UsersApiTest.class
+ApiTest/LoginApiTest.class
+WebTest/TestWithoutGrid.class
+ApiTest/RetryAnalyser.class
+SignupTest/UserRequestyPojo.class
+TestListners/CustomTestListner.class
+SignupTest/Signup.class
+ApiTest/Annotation.class
+TestListners/ReporterTesNg.class

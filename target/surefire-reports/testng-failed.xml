@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [API Automation]">
+  <test thread-count="5" verbose="0" name="Test(failed)" parallel="methods">
+    <method-selectors>
+      <method-selector>
+        <script language="beanshell">
+          <![CDATA[
+                    String exclude = System.getProperty("exclude","null");
+                (!Collections.disjoint(groups.keySet(), Arrays.asList(System.getProperty("suiteName").split("\\s*,\\s*"))) && (!!Collections.disjoint(groups.keySet(), Arrays.asList(exclude.split("\\s*,\\s*")))));
+                ]]>
+        </script>
+      </method-selector>
+    </method-selectors>
+    <classes>
+      <class name="ApiTest.LoginApiTest">
+        <methods>
+          <include name="clickLogin" invocation-numbers="0 1"/>
+        </methods>
+      </class> <!-- ApiTest.LoginApiTest -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [API Automation] -->

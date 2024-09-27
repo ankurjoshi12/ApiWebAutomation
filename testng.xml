@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="API Automation">
+    <test name="Test" parallel="methods">
+        <method-selectors>
+            <method-selector>
+                <script language="beanshell">
+                    <![CDATA[
+                    String exclude = System.getProperty("exclude","null");
+                	(!Collections.disjoint(groups.keySet(), Arrays.asList(System.getProperty("suiteName").split("\\s*,\\s*"))) && (!!Collections.disjoint(groups.keySet(), Arrays.asList(exclude.split("\\s*,\\s*")))));
+                	]]>
+                </script>
+            </method-selector>
+        </method-selectors>
+         <classes>
+             <class name="WebTest.TestWithoutGrid"/>
+             <class name="ApiTest.LoginApiTest"></class>
+             <class name="SignupTest.Signup"></class>
+             <class name="ApiTest.UsersApiTest"></class>
+        </classes>
+<!--        <packages>-->
+<!--        	<package name="*.*"></package>-->
+<!--        </packages>-->
+    </test>
+</suite>

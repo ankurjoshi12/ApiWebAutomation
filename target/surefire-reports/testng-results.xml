@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="6" total="7" passed="1">
+  <reporter-output>
+    <line>
+      <![CDATA[Hitting URL : https://www.google.com]]>
+    </line>
+    <line>
+      <![CDATA[Taking screen shot]]>
+    </line>
+    <line>
+      <![CDATA[Entering keyword : chrome]]>
+    </line>
+  </reporter-output>
+  <suite name="API Automation" duration-ms="22768" started-at="2024-09-27T01:34:23 IST" finished-at="2024-09-27T01:34:46 IST">
+    <groups>
+      <group name="nogrid">
+        <method signature="TestWithoutGrid.testWithoutGrid(java.lang.String)[pri:0, instance:WebTest.TestWithoutGrid@7ce6a65d]" name="testWithoutGrid" class="WebTest.TestWithoutGrid"/>
+      </group> <!-- nogrid -->
+    </groups>
+    <test name="Test" duration-ms="22768" started-at="2024-09-27T01:34:23 IST" finished-at="2024-09-27T01:34:46 IST">
+      <class name="WebTest.TestWithoutGrid">
+        <test-method status="PASS" signature="testWithoutGrid(java.lang.String)[pri:0, instance:WebTest.TestWithoutGrid@7ce6a65d]" name="testWithoutGrid" duration-ms="22621" started-at="2024-09-27T01:34:23 IST" data-provider="testDS" finished-at="2024-09-27T01:34:46 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+            <line>
+              <![CDATA[Hitting URL : https://www.google.com]]>
+            </line>
+            <line>
+              <![CDATA[Taking screen shot]]>
+            </line>
+            <line>
+              <![CDATA[Entering keyword : chrome]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- testWithoutGrid -->
+      </class> <!-- WebTest.TestWithoutGrid -->
+    </test> <!-- Test -->
+  </suite> <!-- API Automation -->
+</testng-results>
