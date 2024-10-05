@@ -1,5 +1,6 @@
 EndPoints/ApiEndpoints.class
 DriverConfiguration/InitializeDriverSetup.class
+JavaScriptExecutor/ScriptExecutor.class
 BaseSetting/BaseController.class
 Pages/HomePage.class
 LoginApi/login.class

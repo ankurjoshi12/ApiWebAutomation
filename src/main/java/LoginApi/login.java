@@ -14,7 +14,7 @@ public class login {
 	 */
 	public Response LoginApi(String payload) {
 		return RestAssured
-		.given(ApiRequestSpecification.getRequestSpecfication())
+		.given(ApiRequestSpecification.getRequestSpecification())
 //		.body(payload)
 		.get(ApiEndpoints.fact)
 		.then().extract().response();

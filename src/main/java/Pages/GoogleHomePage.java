@@ -1,5 +1,6 @@
 package Pages;
 
+import DriverConfiguration.InitializeDriverSetup;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,12 +8,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-public class GoogleHomePage {
+
+import java.time.Duration;
+
+public class GoogleHomePage{
 	
 	public static Logger logger = Logger.getLogger(GoogleHomePage.class);
 	
 	WebDriver driver ; 
-	WebDriverWait wait ; 
+	WebDriverWait wait ;
 
 	@FindBy(xpath = "//*[@id=\"APjFqb\"]")
 	WebElement searchBox;
@@ -22,7 +26,7 @@ public class GoogleHomePage {
 	
 	public GoogleHomePage(WebDriver driver) {
 		this.driver = driver;
-		wait = new WebDriverWait(driver, 60);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		PageFactory.initElements(driver, this);
 	}
 	

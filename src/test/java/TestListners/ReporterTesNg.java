@@ -17,33 +17,33 @@ public class ReporterTesNg extends InitializeDriverSetup {
     public void log(String step , boolean result) {
         logger.info(step);
         Reporter.log(step);
-        addTestcaseStepRow(step, result);
+//        addTestcaseStepRow(step, result);
     }
 
-    public static void addTestcaseStepRow(String step, boolean result){
-//        Reporter
-        if(screenshot && !result) {
-            TakesScreenshot takesScreenshot = (TakesScreenshot)driver;
-            File srcFile  = takesScreenshot.getScreenshotAs(OutputType.FILE);
-            String testName = Thread.currentThread().getStackTrace()[2].getMethodName().replace("&", "and");
-            String folderName = "/ScreenShots/"+testName ;
-            File screenshotDir = new File(System.getProperty("user.dir") + "/" + folderName);
-            if (!screenshotDir.exists()) {
-                boolean isDirCreated = screenshotDir.mkdirs();
-                if (!isDirCreated) {
-                    System.out.println("Failed to create the directory: " + screenshotDir.getAbsolutePath());
-                    return;
-                }
-            }
-            File destFile = new File(screenshotDir+"/"+testName+System.currentTimeMillis()+".png");
-            try {
-                // Save the screenshot to the specified location
-                FileHandler.copy(srcFile, destFile);
-                System.out.println("Screenshot saved successfully!");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
+//    public static void addTestcaseStepRow(String step, boolean result){
+////        Reporter
+//        if(screenshot && !result) {
+//            TakesScreenshot takesScreenshot = (TakesScreenshot)driver;
+//            File srcFile  = takesScreenshot.getScreenshotAs(OutputType.FILE);
+//            String testName = Thread.currentThread().getStackTrace()[2].getMethodName().replace("&", "and");
+//            String folderName = "/ScreenShots/"+testName ;
+//            File screenshotDir = new File(System.getProperty("user.dir") + "/" + folderName);
+//            if (!screenshotDir.exists()) {
+//                boolean isDirCreated = screenshotDir.mkdirs();
+//                if (!isDirCreated) {
+//                    System.out.println("Failed to create the directory: " + screenshotDir.getAbsolutePath());
+//                    return;
+//                }
+//            }
+//            File destFile = new File(screenshotDir+"/"+testName+System.currentTimeMillis()+".png");
+//            try {
+//                // Save the screenshot to the specified location
+//                FileHandler.copy(srcFile, destFile);
+//                System.out.println("Screenshot saved successfully!");
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//    }
 }

@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public class SignupPage extends BaseController {
     WebDriver driver ;
     WebDriverWait wait ;
@@ -29,7 +31,7 @@ public class SignupPage extends BaseController {
 
 
     public SignupPage(WebDriver driver ){
-        wait = new WebDriverWait(driver , 30);
+        wait = new WebDriverWait(driver , Duration.ofSeconds(30));
         PageFactory.initElements(driver , this );
     }
 

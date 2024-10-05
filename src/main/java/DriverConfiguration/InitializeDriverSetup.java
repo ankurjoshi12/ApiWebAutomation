@@ -2,9 +2,7 @@ package DriverConfiguration;
 
 import BaseSetting.BaseController;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -12,19 +10,33 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Arrays;
+import java.time.Duration;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 public class InitializeDriverSetup extends BaseController {
-    public static WebDriver driver ;
 
+
+
+    // ThreadLocal to ensure each thread gets its own WebDriver instance
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+//    public static WebDriver driver ;
+    public static WebDriver driverWithImplicitWait ;
+    public static WebDriverWait wait ;
+    public static Wait<WebDriver> fluentWait ;
+
+    public static ThreadLocal<WebDriver> getDriver() {
+        return driver;
+    }
     public void log(String step, boolean result) {
         logger.info(step);
         Date date = new Date();
@@ -34,7 +46,7 @@ public class InitializeDriverSetup extends BaseController {
     public static void loggingAndScreenshot(String step, Date date, String result , boolean screenshot){
 //        Reporter
         if(screenshot){
-            TakesScreenshot takesScreenshot = (TakesScreenshot)driver;
+            TakesScreenshot takesScreenshot = (TakesScreenshot)driver.get();
             File srcFile  = takesScreenshot.getScreenshotAs(OutputType.FILE);
             String testName = Thread.currentThread().getStackTrace()[2].getMethodName().replace("&", "and");
             String folderName = "/ScreenShots/"+testName ;
@@ -57,14 +69,28 @@ public class InitializeDriverSetup extends BaseController {
         }
 
     }
-    public WebDriver initilaizeDriver(String browserName) throws MalformedURLException {
+    public WebDriver initializeDriver(String browserName) throws MalformedURLException {
         if(GRID_MODE){
-            driver = new RemoteWebDriver(new URL("http://192.168.1.7:4444"),getCapability(browserName));
-            return driver ;
+//            driver.set(new RemoteWebDriver(new URL("http://192.168.1.4:4444"),getCapability(browserName)));
+            driver.set(new RemoteWebDriver(new URL("http://host.docker.internal:4444/wd/hub"), getCapability(browserName)));
+
+            // Implicit wait
+//            driverWithImplicitWait = getDriver(BROWSER);
+//            driverWithImplicitWait.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+
+            //Explicit wait
+//            wait = new WebDriverWait(driver , Duration.ofSeconds(30));
+//            wait.pollingEvery(Duration.ofSeconds(1));
+
+            //Fluent Wait
+//            fluentWait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(30))
+//                    .pollingEvery(Duration.ofSeconds(2)).ignoring(ElementNotInteractableException.class);
+
+            return driver.get();
         }
         else{
-            driver  = getDriver(BROWSER);
-            return driver ;
+            driver  = (ThreadLocal<WebDriver>) getDriver(BROWSER);
+            return (WebDriver) driver;
         }
     }
     public static DesiredCapabilities getCapability(){
@@ -72,40 +98,59 @@ public class InitializeDriverSetup extends BaseController {
         HashMap<String , List> options = new HashMap<>();
         switch(BROWSER){
             case "firefox":
-                capability = DesiredCapabilities.firefox();
-                options.put("args" ,Arrays.asList("--disable-gpu", "--window-size=1920,1080") );
-                capability.setCapability("moz:firefoxOptions", options);
+                FirefoxOptions firefoxOptions = new FirefoxOptions().addArguments("--disable-gpu").addArguments("--window-size=1920,1080")
+                        .addArguments("--headless");
+                capability.setCapability("moz:firefoxOptions", firefoxOptions);
+//                capability = DesiredCapabilities.firefox();
+//                options.put("args" ,Arrays.asList("--disable-gpu", "--window-size=1920,1080") );
+//                capability.setCapability("moz:firefoxOptions", options);
                 break ;
             case "chrome":
-                capability = DesiredCapabilities.chrome();
-                options.put("args" ,Arrays.asList("--disable-gpu", "--window-size=1920,1080") );
-//                "--headless",
-                capability.setCapability("goog:chromeOptions", options);
+                ChromeOptions chromeoptions = new ChromeOptions().addArguments("--disable-gpu").addArguments("--window-size=1920,1080")
+                        .addArguments("--headless");
+                capability.setCapability("goog:chromeOptions", chromeoptions);
+//                capability = DesiredCapabilities.chrome();
+//                options.put("args" ,Arrays.asList("--disable-gpu", "--window-size=1920,1080") );
+////                "--headless",
+//                capability.setCapability("goog:chromeOptions", options);
                 break ;
-            default:
-                capability = DesiredCapabilities.chrome();
-                break ;
+//            default:
+////                capability = DesiredCapabilities.chrome();
+//                ChromeOptions chromeOptions = new ChromeOptions().addArguments("--disable-gpu").addArguments("--window-size=1920,1080")
+//                        .addArguments("--headless");
+//                capability.setCapability("goog:chromeOptions", chromeOptions);
+//                break ;
         }
         return capability ;
     }
     public static DesiredCapabilities getCapability(String browserName){
         DesiredCapabilities capability = new DesiredCapabilities();
-        HashMap<String , List> options = new HashMap<>();
         switch(browserName){
             case "firefox":
-                capability = DesiredCapabilities.firefox();
-                options.put("args" ,Arrays.asList("--disable-gpu", "--window-size=1920,1080") );
-                capability.setCapability("moz:firefoxOptions", options);
+                FirefoxOptions firefoxOptions = new FirefoxOptions().addArguments("--disable-gpu")
+                        .addArguments("--window-size=1920,1080");
+                firefoxOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
+                firefoxOptions.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.DISMISS_AND_NOTIFY);
+//                            .addArguments("--headless");
+                capability.setCapability(FirefoxOptions.FIREFOX_OPTIONS, firefoxOptions);
+//                capability = DesiredCapabilities.firefox();
+//                options.put("args" ,Arrays.asList("--disable-gpu", "--window-size=1920,1080") );
+//                capability.setCapability("moz:firefoxOptions", options);
                 break ;
             case "chrome":
-                capability = DesiredCapabilities.chrome();
-                options.put("args" ,Arrays.asList( "--disable-gpu", "--window-size=1920,1080") );
-//                "--headless",
-                capability.setCapability("goog:chromeOptions", options);
+                ChromeOptions chromeoptions = new ChromeOptions().addArguments("--disable-gpu")
+                        .addArguments("--window-size=1920,1080");
+//                        .addArguments("--headless");
+                chromeoptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
+                chromeoptions.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.DISMISS_AND_NOTIFY);
+//                capability.setCapability("goog:chromeOptions", chromeoptions);
+                capability.setCapability(ChromeOptions.CAPABILITY, chromeoptions);
                 break ;
             default:
-                capability = DesiredCapabilities.chrome();
-                break ;
+//                ChromeOptions chromeOptions = new ChromeOptions().addArguments("--disable-gpu").addArguments("--window-size=1920,1080")
+//                        .addArguments("--headless");
+//                capability.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+//                break ;
         }
         return capability ;
     }

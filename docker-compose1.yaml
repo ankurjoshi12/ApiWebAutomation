@@ -1,0 +1,29 @@
+version: '3'
+services:
+  selenium-chrome:
+    image: selenium/standalone-chrome:latest
+    container_name: selenium-chrome
+    ports:
+      - "4444:4444"  # Exposes the Selenium Grid port for Chrome
+    environment:
+      - SE_NODE_MAX_SESSIONS=5       # Maximum number of parallel sessions
+      - SE_NODE_SESSION_TIMEOUT=60   # Session timeout in seconds
+    platform: linux/amd64            # Forces the platform to AMD64 for M1/M2 Mac compatibility
+    networks:
+      - selenium-grid-network
+
+  selenium-firefox:
+    image: selenium/standalone-firefox:latest
+    container_name: selenium-firefox
+    ports:
+      - "4445:4444"  # Exposes a different port for Firefox since Chrome is using 4444
+    environment:
+      - SE_NODE_MAX_SESSIONS=5       # Maximum number of parallel sessions
+      - SE_NODE_SESSION_TIMEOUT=60   # Session timeout in seconds
+    platform: linux/amd64            # Forces the platform to AMD64 for M1/M2 Mac compatibility
+    networks:
+      - selenium-grid-network
+
+networks:
+  selenium-grid-network:
+    driver: bridge

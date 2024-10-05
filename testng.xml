@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="API Automation">
-    <test name="Test" parallel="methods">
+    <test name="Test" parallel="methods" thread-count="4">
         <method-selectors>
             <method-selector>
                 <script language="beanshell">

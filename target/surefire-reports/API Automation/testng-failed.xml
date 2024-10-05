@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [API Automation]">
-  <test thread-count="5" verbose="0" name="Test(failed)" parallel="methods">
+<suite name="Failed suite [API Automation]" guice-stage="DEVELOPMENT" verbose="0">
+  <test thread-count="5" parallel="methods" name="Test(failed)" verbose="0">
     <method-selectors>
       <method-selector>
         <script language="beanshell">
@@ -13,11 +13,12 @@
       </method-selector>
     </method-selectors>
     <classes>
-      <class name="ApiTest.LoginApiTest">
+      <class name="WebTest.TestWithoutGrid">
         <methods>
-          <include name="clickLogin" invocation-numbers="0 1"/>
+          <include name="testWithoutGrid" invocation-numbers="0 1"/>
+          <include name="quiteDriver"/>
         </methods>
-      </class> <!-- ApiTest.LoginApiTest -->
+      </class> <!-- WebTest.TestWithoutGrid -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [API Automation] -->

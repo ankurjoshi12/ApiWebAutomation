@@ -20,7 +20,7 @@ public class UsersApiTest {
                 .then()
                 .extract()
                 .response();
-        System.out.println("resposne : "+res.getBody().asString());
+        System.out.println("response : "+res.getBody().asString());
         Assert.assertTrue(res.getStatusCode()==201 ,"Api Failed ... Something Bad Happened!!" );
     }
 

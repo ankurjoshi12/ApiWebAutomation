@@ -1,0 +1,23 @@
+version: '3'
+services:
+  selenium-standalone:
+    image: selenium/standalone-chrome:latest
+    container_name: selenium-standalone
+    ports:
+      - "4444:4444"
+    networks:
+      - selenium-grid-network
+
+  testng-tests:
+    build: ./path-to-your-testng-project
+    container_name: testng-tests
+    networks:
+      - selenium-grid-network
+    depends_on:
+      - selenium-standalone
+
+networks:
+  selenium-grid-network:
+    driver: bridge
+#  WebDriver driver = new RemoteWebDriver(new URL("http://selenium-standalone:4444/wd/hub"), new ChromeOptions());
+

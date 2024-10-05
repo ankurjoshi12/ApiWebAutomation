@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public class HomePage extends BaseController {
     WebDriver driver ;
     WebDriverWait wait ;
@@ -19,7 +21,7 @@ public class HomePage extends BaseController {
     WebElement businessModuleElement;
 
     public HomePage(WebDriver driver ){
-        wait = new WebDriverWait(driver ,30);
+        wait = new WebDriverWait(driver , Duration.ofSeconds(30));
         PageFactory.initElements(driver , this );
     }
 

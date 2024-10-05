@@ -9,10 +9,117 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">API Automation</th></tr>
-<tr><td><a href="#t0">Test</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">22,768</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Test</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num attn">2</td><td class="num">997</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">API Automation</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">WebTest.TestWithoutGrid</td><td><a href="#m0">testWithoutGrid</a></td><td rowspan="1">1727381063740</td><td rowspan="1">22621</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">API Automation</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="2">WebTest.TestWithoutGrid</td><td><a href="#m0">testWithoutGrid</a></td><td rowspan="2">1728116772512</td><td rowspan="2">7</td></tr><tr class="failedeven"><td><a href="#m1">testWithoutGrid</a></td></tr></tbody>
 </table>
-<h2>Test</h2><h3 id="m0">WebTest.TestWithoutGrid#testWithoutGrid</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>chrome</td></tr><tr><th>Messages</th></tr><tr><td><div class="messages">Hitting URL : https://www.google.com<br/>Taking screen shot<br/>Entering keyword : chrome</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Test</h2><h3 id="m0">WebTest.TestWithoutGrid#testWithoutGrid</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>chrome</td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure. 
+Host info: host: &apos;192.168.1.7&apos;, ip: &apos;fe80:0:0:0:18d7:ce08:f18f:ed3b%en0&apos;
+Build info: version: &apos;4.11.0&apos;, revision: &apos;040bc5406b&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;aarch64&apos;, os.version: &apos;14.5&apos;, java.version: &apos;23&apos;
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Command: [null, newSession {capabilities=[Capabilities {browserName: chrome, goog:chromeOptions: {args: [--remote-allow-origins=*, --disable-gpu, --window-size=1920,1080], extensions: []}, pageLoadStrategy: eager, unhandledPromptBehavior: dismiss and notify}]}]
+Capabilities {browserName: chrome, goog:chromeOptions: {args: [--remote-allow-origins=*, --disable-gpu, --window-size=1920,1080], extensions: []}, pageLoadStrategy: eager, unhandledPromptBehavior: dismiss and notify}
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:536)
+	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:232)
+	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:159)
+	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:139)
+	at DriverConfiguration.InitializeDriverSetup.initializeDriver(InitializeDriverSetup.java:75)
+	at WebTest.TestWithoutGrid.testWithoutGrid(TestWithoutGrid.java:32)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+Caused by: java.io.UncheckedIOException: java.net.UnknownHostException: host.docker.internal
+	at org.openqa.selenium.remote.http.netty.NettyHttpHandler.makeCall(NettyHttpHandler.java:73)
+	at org.openqa.selenium.remote.http.AddSeleniumUserAgent.lambda$apply$0(AddSeleniumUserAgent.java:42)
+	at org.openqa.selenium.remote.http.Filter.lambda$andFinally$1(Filter.java:55)
+	at org.openqa.selenium.remote.http.netty.NettyHttpHandler.execute(NettyHttpHandler.java:48)
+	at org.openqa.selenium.remote.http.netty.NettyClient.execute(NettyClient.java:96)
+	at org.openqa.selenium.remote.tracing.TracedHttpClient.execute(TracedHttpClient.java:54)
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:115)
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:96)
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:68)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:163)
+	at org.openqa.selenium.remote.TracedCommandExecutor.execute(TracedCommandExecutor.java:51)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	... 18 more
+Caused by: java.net.UnknownHostException: host.docker.internal
+	at java.base/java.net.InetAddress$CachedLookup.get(InetAddress.java:998)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1807)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1676)
+	at io.netty.util.internal.SocketUtils$9.run(SocketUtils.java:169)
+	at io.netty.util.internal.SocketUtils$9.run(SocketUtils.java:166)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571)
+	at io.netty.util.internal.SocketUtils.allAddressesByName(SocketUtils.java:166)
+	at io.netty.resolver.DefaultNameResolver.doResolveAll(DefaultNameResolver.java:50)
+	at io.netty.resolver.SimpleNameResolver.resolveAll(SimpleNameResolver.java:79)
+	at io.netty.resolver.SimpleNameResolver.resolveAll(SimpleNameResolver.java:71)
+	at org.asynchttpclient.resolver.RequestHostnameResolver.resolve(RequestHostnameResolver.java:50)
+	at org.asynchttpclient.netty.request.NettyRequestSender.resolveAddresses(NettyRequestSender.java:364)
+	at org.asynchttpclient.netty.request.NettyRequestSender.sendRequestWithNewChannel(NettyRequestSender.java:307)
+	at org.asynchttpclient.netty.request.NettyRequestSender.sendRequestWithCertainForceConnect(NettyRequestSender.java:143)
+	at org.asynchttpclient.netty.request.NettyRequestSender.sendRequest(NettyRequestSender.java:114)
+	at org.asynchttpclient.DefaultAsyncHttpClient.execute(DefaultAsyncHttpClient.java:259)
+	at org.asynchttpclient.DefaultAsyncHttpClient.executeRequest(DefaultAsyncHttpClient.java:228)
+	at org.asynchttpclient.DefaultAsyncHttpClient.executeRequest(DefaultAsyncHttpClient.java:249)
+	at org.openqa.selenium.remote.http.netty.NettyHttpHandler.makeCall(NettyHttpHandler.java:55)
+	... 29 more
+... Removed 10 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">WebTest.TestWithoutGrid#testWithoutGrid</h3><table class="result"><tr class="param"><th>Parameter #1</th></tr><tr class="param stripe"><td>firefox</td></tr><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure. 
+Host info: host: &apos;192.168.1.7&apos;, ip: &apos;fe80:0:0:0:18d7:ce08:f18f:ed3b%en0&apos;
+Build info: version: &apos;4.11.0&apos;, revision: &apos;040bc5406b&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;aarch64&apos;, os.version: &apos;14.5&apos;, java.version: &apos;23&apos;
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Command: [null, newSession {capabilities=[Capabilities {acceptInsecureCerts: true, browserName: firefox, moz:debuggerAddress: true, moz:firefoxOptions: {args: [--disable-gpu, --window-size=1920,1080]}, pageLoadStrategy: eager, unhandledPromptBehavior: dismiss and notify}]}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, moz:debuggerAddress: true, moz:firefoxOptions: {args: [--disable-gpu, --window-size=1920,1080]}, pageLoadStrategy: eager, unhandledPromptBehavior: dismiss and notify}
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:536)
+	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:232)
+	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:159)
+	at org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:139)
+	at DriverConfiguration.InitializeDriverSetup.initializeDriver(InitializeDriverSetup.java:75)
+	at WebTest.TestWithoutGrid.testWithoutGrid(TestWithoutGrid.java:32)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+Caused by: java.io.UncheckedIOException: java.net.UnknownHostException: host.docker.internal: nodename nor servname provided, or not known
+	at org.openqa.selenium.remote.http.netty.NettyHttpHandler.makeCall(NettyHttpHandler.java:73)
+	at org.openqa.selenium.remote.http.AddSeleniumUserAgent.lambda$apply$0(AddSeleniumUserAgent.java:42)
+	at org.openqa.selenium.remote.http.Filter.lambda$andFinally$1(Filter.java:55)
+	at org.openqa.selenium.remote.http.netty.NettyHttpHandler.execute(NettyHttpHandler.java:48)
+	at org.openqa.selenium.remote.http.netty.NettyClient.execute(NettyClient.java:96)
+	at org.openqa.selenium.remote.tracing.TracedHttpClient.execute(TracedHttpClient.java:54)
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:115)
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:96)
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:68)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:163)
+	at org.openqa.selenium.remote.TracedCommandExecutor.execute(TracedCommandExecutor.java:51)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	... 18 more
+Caused by: java.net.UnknownHostException: host.docker.internal: nodename nor servname provided, or not known
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Inet6AddressImpl.java:52)
+	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(InetAddress.java:1221)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1817)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:1149)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1807)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1676)
+	at io.netty.util.internal.SocketUtils$9.run(SocketUtils.java:169)
+	at io.netty.util.internal.SocketUtils$9.run(SocketUtils.java:166)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571)
+	at io.netty.util.internal.SocketUtils.allAddressesByName(SocketUtils.java:166)
+	at io.netty.resolver.DefaultNameResolver.doResolveAll(DefaultNameResolver.java:50)
+	at io.netty.resolver.SimpleNameResolver.resolveAll(SimpleNameResolver.java:79)
+	at io.netty.resolver.SimpleNameResolver.resolveAll(SimpleNameResolver.java:71)
+	at org.asynchttpclient.resolver.RequestHostnameResolver.resolve(RequestHostnameResolver.java:50)
+	at org.asynchttpclient.netty.request.NettyRequestSender.resolveAddresses(NettyRequestSender.java:364)
+	at org.asynchttpclient.netty.request.NettyRequestSender.sendRequestWithNewChannel(NettyRequestSender.java:307)
+	at org.asynchttpclient.netty.request.NettyRequestSender.sendRequestWithCertainForceConnect(NettyRequestSender.java:143)
+	at org.asynchttpclient.netty.request.NettyRequestSender.sendRequest(NettyRequestSender.java:114)
+	at org.asynchttpclient.DefaultAsyncHttpClient.execute(DefaultAsyncHttpClient.java:259)
+	at org.asynchttpclient.DefaultAsyncHttpClient.executeRequest(DefaultAsyncHttpClient.java:228)
+	at org.asynchttpclient.DefaultAsyncHttpClient.executeRequest(DefaultAsyncHttpClient.java:249)
+	at org.openqa.selenium.remote.http.netty.NettyHttpHandler.makeCall(NettyHttpHandler.java:55)
+	... 29 more
+... Removed 10 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>
